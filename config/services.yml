@@ -1,0 +1,13 @@
+services:
+    alfredoramos.hide.listener:
+        class: alfredoramos\hide\event\listener
+        tags:
+            - { name: event.listener }
+
+    alfredoramos.hide.helper:
+        class: alfredoramos\hide\includes\helper
+        arguments:
+            - '@dbal.conn'
+            - '@filesystem'
+            - '%core.root_path%'
+            - '%core.php_ext%'
