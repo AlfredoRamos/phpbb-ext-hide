@@ -19,9 +19,7 @@ Hide Extension for phpBB 3.2.x
 
 ### Usage
 
-Write `[hide]text[/hide]` or `[hide inline=1]text[/hide]` and it will hide the content to guests.
-
-**Note:** BBCodes cannot be nested.
+Write `[hide]text[/hide]`  and it will hide the content to guests.
 
 ### Preview
 
@@ -36,8 +34,8 @@ To customize the look and feel:
 
 - Copy the `styles/prosilver/` directory into `styles/{STYLE}/`
 - Edit the following files as needed
-	- `styles/{NEW_STYLE}/theme/css/style.css`
-	- `styles/{NEW_STYLE}/theme/css/colors.css`
+	- `styles/{STYLE}/theme/css/style.css`
+	- `styles/{STYLE}/theme/css/colors.css`
 
 **Note:** If your style doesn't inherit from `prosilver`, you should follow the steps above even if you don't want to change any file.
 

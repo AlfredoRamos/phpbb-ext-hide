@@ -17,12 +17,6 @@
 	border-radius: 5px;
 }
 
-span.hidden-content {
-	border-width: 1px;
-	margin: 0;
-	padding: 1px 2px;
-}
-
 .hidden-content legend {
 	padding: 0 5px;
 	font-weight: bold;
