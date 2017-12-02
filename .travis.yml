@@ -26,11 +26,12 @@ matrix:
   allow_failures:
     - php: 7.2
     - php: nightly
+    - env: DB=none;NOTESTS=1
   fast_finish: true
 
 env:
   global:
-    - EXTNAME="alfredoramos/hide"           # Extension name
+    - EXTNAME="alfredoramos/hide"             # Extension name
     - GITREPO="AlfredoRamos/phpbb-ext-hide"   # GitHub repository
     - SNIFF="1"         # Code sniffer switch
     - IMAGE_ICC="1"     # ICC profile sniffer switch
@@ -46,6 +47,9 @@ branches:
 cache:
   directories:
     - $HOME/.composer/cache/files
+
+before_install:
+  - travis_retry composer self-update
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
