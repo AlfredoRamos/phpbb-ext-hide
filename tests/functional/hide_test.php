@@ -42,10 +42,10 @@ class hide_test extends phpbb_functional_test_case
 			$this->sid
 		));
 
-		$expected = '<fieldset class="hidden-content">'.PHP_EOL.
-						'<legend>'.$this->lang('HIDDEN_CONTENT').'</legend>'.
+		$expected = '<section class="hidden-content">'.
+						'<header><span>'.$this->lang('HIDDEN_CONTENT').'</span></header>'.
 						'Hidden text'.
-					'</fieldset>';
+					'</section>';
 
 		$result = $crawler->filter(sprintf(
 			'#post_content%d .content',

@@ -11,15 +11,25 @@
 }
 
 .hidden-content,
-.hidden-content legend {
+.hidden-content header span {
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 5px;
 }
 
-.hidden-content legend {
-	padding: 0 5px;
+.hidden-content header {
+	margin: -15px auto 5px;
+}
+
+.hidden-content header span {
+	padding: 1px 5px;
 	font-weight: bold;
+}
+
+.hidden-content.inline {
+	display: inline-block;
+	margin: 0;
+	padding: 0 3px;
 }
 
 .hidden-content.error {

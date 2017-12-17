@@ -6,12 +6,12 @@
  */
 
 .hidden-content,
-.hidden-content legend {
+.hidden-content header span {
 	background-color: #fcf8e3;
 	border-color: #faebcc;
 }
 
-.hidden-content legend {
+.hidden-content header span {
 	color: #8a6d3b;
 }
 

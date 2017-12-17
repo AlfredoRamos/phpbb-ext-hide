@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Hide BBCode Extension for phpBB 3.2.x",
 	"homepage": "https://github.com/AlfredoRamos/phpbb-ext-hide",
-	"version": "0.2.0",
-	"time": "2017-12-02",
+	"version": "0.3.0",
+	"time": "2017-12-17",
 	"keywords": ["phpbb", "extension", "hide", "bbcode"],
 	"license": "GPL-2.0",
 	"authors": [
