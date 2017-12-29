@@ -19,7 +19,7 @@ class hide_test extends phpbb_functional_test_case
 	public function setUp()
 	{
 		parent::setUp();
-		$this->add_lang_ext('alfredoramos/hide', 'hide');
+		$this->add_lang_ext('alfredoramos/hide', 'posting');
 		$this->login();
 	}
 
