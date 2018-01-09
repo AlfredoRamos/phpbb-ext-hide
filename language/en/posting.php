@@ -24,7 +24,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'HIDE_HELPLINE' => 'Hide content to guest users.',
+	'HIDE_HELPLINE' => 'Usage: [hide]text[/hide] or [hide inline=1]text[/hide]',
 	'HIDDEN_CONTENT' => 'Hidden content',
 	'HIDDEN_CONTENT_EXPLAIN' => 'Exclusive content for logged in users.'
 ]);
