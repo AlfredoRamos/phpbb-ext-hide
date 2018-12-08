@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Hide Extension for phpBB.
+ * Hide extension for phpBB.
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
