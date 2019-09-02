@@ -58,7 +58,7 @@ class m1_hide_data extends container_aware_migration
 	 */
 	private function get_helper()
 	{
-		if (!isset($hide))
+		if (!isset($this->hide))
 		{
 			$this->hide = new hide_helper(
 				$this->container->get('dbal.conn'),
