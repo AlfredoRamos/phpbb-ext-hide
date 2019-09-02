@@ -14,7 +14,6 @@ use phpbb\filesystem\filesystem;
 
 class helper
 {
-
 	/** @var \phpbb\db\driver\factory */
 	protected $db;
 
@@ -46,13 +45,6 @@ class helper
 		$this->filesystem = $filesystem;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
-
-		if (!class_exists('acp_bbcodes'))
-		{
-			include($this->root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
-		}
-
-		$this->acp_bbcodes = new \acp_bbcodes;
 	}
 
 	/**
@@ -62,15 +54,26 @@ class helper
 	 */
 	public function install_bbcode()
 	{
-		// Remove conflicting BBCode
-		$this->remove_bbcode('hide=');
-
 		$data = $this->bbcode_data();
 
 		if (empty($data))
 		{
 			return;
 		}
+
+		// Lazy load  BBCodes helper
+		if (!isset($this->acp_bbcodes))
+		{
+			if (!class_exists('acp_bbcodes'))
+			{
+				include($this->root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
+			}
+
+			$this->acp_bbcodes = new \acp_bbcodes;
+		}
+
+		// Remove conflicting BBCode
+		$this->remove_bbcode('hide=');
 
 		$data['bbcode_id'] = (int) $this->bbcode_id();
 		$data = array_replace(
@@ -162,7 +165,6 @@ class helper
 		return $bbcode_id;
 	}
 
-
 	/**
 	 * Add the BBCode in the database.
 	 *
@@ -181,7 +183,6 @@ class helper
 		$sql = 'INSERT INTO ' . BBCODES_TABLE . '
 			' . $this->db->sql_build_array('INSERT', $data);
 		$this->db->sql_query($sql);
-
 	}
 
 	/**
@@ -263,5 +264,4 @@ class helper
 			'display_on_posting'	=> 1
 		];
 	}
-
 }

@@ -18,7 +18,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class listener_test extends phpbb_test_case
 {
-
 	public function test_instance()
 	{
 		$this->assertInstanceOf(

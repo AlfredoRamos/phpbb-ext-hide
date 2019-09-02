@@ -14,6 +14,8 @@ use alfredoramos\hide\includes\helper as hide_helper;
 
 class m1_hide_data extends container_aware_migration
 {
+	/** @var \alfredoramos\hide\includes\helper */
+	protected $hide = null;
 
 	/**
 	 * Install BBCode in database.
@@ -26,15 +28,7 @@ class m1_hide_data extends container_aware_migration
 			[
 				'custom',
 				[
-					[
-						new hide_helper(
-							$this->container->get('dbal.conn'),
-							$this->container->get('filesystem'),
-							$this->container->getParameter('core.root_path'),
-							$this->container->getParameter('core.php_ext')
-						),
-						'install_bbcode'
-					]
+					[$this->get_helper(), 'install_bbcode']
 				]
 			]
 		];
@@ -51,18 +45,29 @@ class m1_hide_data extends container_aware_migration
 			[
 				'custom',
 				[
-					[
-						new hide_helper(
-							$this->container->get('dbal.conn'),
-							$this->container->get('filesystem'),
-							$this->container->getParameter('core.root_path'),
-							$this->container->getParameter('core.php_ext')
-						),
-						'uninstall_bbcode'
-					]
+					[$this->get_helper(), 'uninstall_bbcode']
 				]
 			]
 		];
 	}
 
+	/**
+	 * Hide helper.
+	 *
+	 * @return \alfredoramos\hide\includes\helper
+	 */
+	private function get_helper()
+	{
+		if (!isset($hide))
+		{
+			$this->hide = new hide_helper(
+				$this->container->get('dbal.conn'),
+				$this->container->get('filesystem'),
+				$this->container->getParameter('core.root_path'),
+				$this->container->getParameter('core.php_ext')
+			);
+		}
+
+		return $this->hide;
+	}
 }

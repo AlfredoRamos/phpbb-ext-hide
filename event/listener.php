@@ -13,7 +13,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-
 	/**
 	 * Assign functions defined in this class to event listeners in the core.
 	 *
@@ -42,5 +41,4 @@ class listener implements EventSubscriberInterface
 		];
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
-
 }
