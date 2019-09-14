@@ -49,6 +49,9 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
+before_install:
+  - $TRAVIS_BUILD_DIR/travis/prepare-install.sh
+
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
   - cd ../../phpBB3
