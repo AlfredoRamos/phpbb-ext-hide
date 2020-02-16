@@ -10,9 +10,25 @@
 namespace alfredoramos\hide\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use alfredoramos\hide\includes\helper;
 
 class listener implements EventSubscriberInterface
 {
+	/** @var \alfredoramos\hide\includes\helper */
+	protected $helper;
+
+	/**
+	 * Listener constructor.
+	 *
+	 * @param \alfredoramos\hide\includes\helper $helper
+	 *
+	 * @return void
+	 */
+	public function __construct(helper $helper)
+	{
+		$this->helper = $helper;
+	}
+
 	/**
 	 * Assign functions defined in this class to event listeners in the core.
 	 *
@@ -21,7 +37,8 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return [
-			'core.user_setup' => 'user_setup'
+			'core.user_setup' => 'user_setup',
+			'core.text_formatter_s9e_configure_after' => 'configure_hide'
 		];
 	}
 
@@ -40,5 +57,33 @@ class listener implements EventSubscriberInterface
 			'lang_set'	=> 'posting'
 		];
 		$event['lang_set_ext'] = $lang_set_ext;
+	}
+
+	/**
+	 * Add BBCode.
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
+	public function configure_hide($event)
+	{
+		$configurator = $event['configurator'];
+		$hide = $this->helper->bbcode_data();
+
+		if (empty($hide))
+		{
+			return;
+		}
+
+		// Remove previous definitions
+		unset($configurator->BBCodes[$hide['bbcode_tag']]);
+		unset($configurator->tags[$hide['bbcode_tag']]);
+
+		// Create HIDE BBCode
+		$configurator->BBCodes->addCustom(
+			$hide['bbcode_match'],
+			$hide['bbcode_tpl']
+		);
 	}
 }

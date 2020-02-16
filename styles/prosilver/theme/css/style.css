@@ -36,20 +36,8 @@
 	text-align: center;
 }
 
-.bbcode-hide {
-	font-size: 0;
-	letter-spacing: -1px;
-}
-
-.bbcode-hide::before {
-	content: "\f023"; /* lock */
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 1.3;
-	font-family: FontAwesome;
-	text-rendering: normal;
-	letter-spacing: normal;
-	padding: 0 2px;
+.bbcode-hide.abbc3_button {
+	background-image: url('../../../all/theme/images/lock-closed.svg');
+	background-size: 95%;
+	background-position: 50% 50%;
 }
