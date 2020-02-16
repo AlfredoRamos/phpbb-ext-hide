@@ -1,6 +1,8 @@
 services:
     alfredoramos.hide.listener:
         class: alfredoramos\hide\event\listener
+        arguments:
+            - '@alfredoramos.hide.helper'
         tags:
             - { name: event.listener }
 

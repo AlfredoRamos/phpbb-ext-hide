@@ -11,6 +11,7 @@ namespace alfredoramos\hide\tests\event;
 
 use phpbb_test_case;
 use alfredoramos\hide\event\listener;
+use alfredoramos\hide\includes\helper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -18,18 +19,32 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class listener_test extends phpbb_test_case
 {
+	/** @var \alfredoramos\hide\includes\helper */
+	protected $helper;
+
+	public function setUp(): void
+	{
+		parent::setUp();
+
+		$this->helper = $this->getMockBuilder(helper::class)
+			->disableOriginalConstructor()->getMock();
+	}
+
 	public function test_instance()
 	{
 		$this->assertInstanceOf(
 			EventSubscriberInterface::class,
-			new listener
+			new listener($this->helper)
 		);
 	}
 
 	public function test_subscribed_events()
 	{
 		$this->assertSame(
-			['core.user_setup'],
+			[
+				'core.user_setup',
+				'core.text_formatter_s9e_configure_after'
+			],
 			array_keys(listener::getSubscribedEvents())
 		);
 	}
