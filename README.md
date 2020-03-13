@@ -2,7 +2,9 @@
 
 Hide extension for phpBB
 
-[![Build Status](https://img.shields.io/travis/com/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://travis-ci.com/AlfredoRamos/phpbb-ext-hide) [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-hide.svg?label=stable&style=flat-square)](https://github.com/AlfredoRamos/phpbb-ext-hide/releases) [![Code Quality](https://img.shields.io/codacy/grade/c2388e8b347f41ab87213a0d9b72f2a9.svg?style=flat-square)](https://app.codacy.com/app/AlfredoRamos/phpbb-ext-hide) [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-hide/master/license.txt)
+[![Build Status](https://img.shields.io/travis/com/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://travis-ci.com/AlfredoRamos/phpbb-ext-hide)
+[![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-hide.svg?label=stable&style=flat-square)](https://github.com/AlfredoRamos/phpbb-ext-hide/releases)
+[![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-hide/master/license.txt)
 
 ### Dependencies
 
