@@ -20,6 +20,7 @@
 		<delete file="${dir}/.gitattributes" />
 		<delete file="${dir}/.travis.yml" />
 		<delete file="${dir}/build.xml" />
+		<delete file="${dir}/crowdin.yml" />
 		<delete file="${dir}/phpunit.xml.dist" />
 		<delete file="${dir}/README.md" />
 	</target>
