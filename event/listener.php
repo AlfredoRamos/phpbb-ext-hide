@@ -38,7 +38,8 @@ class listener implements EventSubscriberInterface
 	{
 		return [
 			'core.user_setup' => 'user_setup',
-			'core.text_formatter_s9e_configure_after' => 'configure_hide'
+			'core.text_formatter_s9e_configure_after' => 'configure_hide',
+			'core.feed_modify_feed_row' => 'clean_feed'
 		];
 	}
 
@@ -85,5 +86,14 @@ class listener implements EventSubscriberInterface
 			$hide['bbcode_match'],
 			$hide['bbcode_tpl']
 		);
+	}
+
+	public function clean_feed($event)
+	{
+		$event['row'] = array_merge($event['row'], [
+			$event['feed']->get('text') => $this->helper->remove_feed_bbcode(
+				$event['row'][$event['feed']->get('text')]
+			)
+		]);
 	}
 }

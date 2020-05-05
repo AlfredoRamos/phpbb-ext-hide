@@ -11,6 +11,7 @@ namespace alfredoramos\hide\includes;
 
 use phpbb\db\driver\factory as database;
 use phpbb\filesystem\filesystem;
+use phpbb\language\language;
 
 class helper
 {
@@ -19,6 +20,9 @@ class helper
 
 	/** @var \phpbb\filesystem\filesystem */
 	protected $filesystem;
+
+	/** @var \phpbb\language\language */
+	protected $language;
 
 	/** @var string */
 	protected $root_path;
@@ -34,15 +38,17 @@ class helper
 	 *
 	 * @param \phpbb\db\driver\factory		$db
 	 * @param \phpbb\filesystem\filesystem	$filesystem
+	 * @param \phpbb\language\language		$language
 	 * @param string						$root_path
 	 * @param string						$php_ext
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, $root_path, $php_ext)
+	public function __construct(database $db, filesystem $filesystem, language $language, $root_path, $php_ext)
 	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
+		$this->language = $language;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 	}
@@ -263,5 +269,41 @@ class helper
 			'bbcode_helpline'	=> 'HIDE_HELPLINE',
 			'display_on_posting'	=> 1
 		];
+	}
+
+	public function remove_feed_bbcode($xml = '')
+	{
+		if (empty($xml))
+		{
+			return '';
+		}
+
+		$dom = new \DOMDocument;
+		$dom->loadXML($xml);
+		$xpath = new \DOMXPath($dom);
+		$nodes = $xpath->query('//HIDE/node()[preceding-sibling::s[1] and following-sibling::e[1]]');
+
+		foreach ($nodes as $key => $node)
+		{
+			if (empty($node->nodeType) || empty($node->parentNode))
+			{
+				continue;
+			}
+
+			// Remove other nodes
+			if ($nodes->length > 1 && $key > 0)
+			{
+				$node->parentNode->removeChild($node);
+				continue;
+			}
+
+			// Replace first node only
+			$explain = $dom->createTextNode($this->language->lang('HIDDEN_CONTENT_EXPLAIN'));
+			$node->parentNode->replaceChild($explain, $node);
+		}
+
+		$xml = $dom->saveXML($dom->documentElement);
+
+		return $xml;
 	}
 }

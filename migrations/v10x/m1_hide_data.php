@@ -63,6 +63,7 @@ class m1_hide_data extends container_aware_migration
 			$this->hide = new hide_helper(
 				$this->container->get('dbal.conn'),
 				$this->container->get('filesystem'),
+				$this->container->get('language'),
 				$this->container->getParameter('core.root_path'),
 				$this->container->getParameter('core.php_ext')
 			);
