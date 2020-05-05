@@ -38,7 +38,8 @@ class listener implements EventSubscriberInterface
 	{
 		return [
 			'core.user_setup' => 'user_setup',
-			'core.text_formatter_s9e_configure_after' => 'configure_hide'
+			'core.text_formatter_s9e_configure_after' => 'configure_hide',
+			'core.feed_modify_feed_row' => 'clean_feed'
 		];
 	}
 
@@ -77,13 +78,31 @@ class listener implements EventSubscriberInterface
 		}
 
 		// Remove previous definitions
-		unset($configurator->BBCodes[$hide['bbcode_tag']]);
-		unset($configurator->tags[$hide['bbcode_tag']]);
+		unset(
+			$configurator->BBCodes[$hide['bbcode_tag']],
+			$configurator->tags[$hide['bbcode_tag']]
+		);
 
 		// Create HIDE BBCode
 		$configurator->BBCodes->addCustom(
 			$hide['bbcode_match'],
 			$hide['bbcode_tpl']
 		);
+	}
+
+	/**
+	 * Remove BBCode from feeds.
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
+	public function clean_feed($event)
+	{
+		$event['row'] = array_merge($event['row'], [
+			$event['feed']->get('text') => $this->helper->remove_feed_bbcode(
+				$event['row'][$event['feed']->get('text')]
+			)
+		]);
 	}
 }

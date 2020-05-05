@@ -11,5 +11,6 @@ services:
         arguments:
             - '@dbal.conn'
             - '@filesystem'
+            - '@language'
             - '%core.root_path%'
             - '%core.php_ext%'

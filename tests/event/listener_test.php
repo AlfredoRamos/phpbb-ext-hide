@@ -43,7 +43,8 @@ class listener_test extends phpbb_test_case
 		$this->assertSame(
 			[
 				'core.user_setup',
-				'core.text_formatter_s9e_configure_after'
+				'core.text_formatter_s9e_configure_after',
+				'core.feed_modify_feed_row'
 			],
 			array_keys(listener::getSubscribedEvents())
 		);
