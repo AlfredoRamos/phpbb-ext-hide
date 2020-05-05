@@ -111,14 +111,7 @@ class helper
 	 */
 	public function uninstall_bbcode()
 	{
-		$data = $this->bbcode_data();
-
-		if (empty($data))
-		{
-			return;
-		}
-
-		$this->remove_bbcode($data['bbcode_tag']);
+		$this->remove_bbcode('hide');
 	}
 
 	/**
@@ -271,6 +264,13 @@ class helper
 		];
 	}
 
+	/**
+	 * Remove nodes inside the hide BBCode on feeds.
+	 *
+	 * @param string $xml
+	 *
+	 * @return string
+	 */
 	public function remove_feed_bbcode($xml = '')
 	{
 		if (empty($xml))
@@ -278,11 +278,15 @@ class helper
 			return '';
 		}
 
+		// DOM manipulation
 		$dom = new \DOMDocument;
 		$dom->loadXML($xml);
 		$xpath = new \DOMXPath($dom);
+
+		// Get all nodes between <s> and <e> nodes
 		$nodes = $xpath->query('//HIDE/node()[preceding-sibling::s[1] and following-sibling::e[1]]');
 
+		// Hide content
 		foreach ($nodes as $key => $node)
 		{
 			if (empty($node->nodeType) || empty($node->parentNode))
@@ -302,6 +306,7 @@ class helper
 			$node->parentNode->replaceChild($explain, $node);
 		}
 
+		// Save changes
 		$xml = $dom->saveXML($dom->documentElement);
 
 		return $xml;

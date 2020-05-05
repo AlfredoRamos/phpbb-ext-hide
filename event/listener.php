@@ -78,8 +78,10 @@ class listener implements EventSubscriberInterface
 		}
 
 		// Remove previous definitions
-		unset($configurator->BBCodes[$hide['bbcode_tag']]);
-		unset($configurator->tags[$hide['bbcode_tag']]);
+		unset(
+			$configurator->BBCodes[$hide['bbcode_tag']],
+			$configurator->tags[$hide['bbcode_tag']]
+		);
 
 		// Create HIDE BBCode
 		$configurator->BBCodes->addCustom(
@@ -88,6 +90,13 @@ class listener implements EventSubscriberInterface
 		);
 	}
 
+	/**
+	 * Remove BBCode from feeds.
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
 	public function clean_feed($event)
 	{
 		$event['row'] = array_merge($event['row'], [
