@@ -8,10 +8,27 @@ Hide extension for phpBB
 [![Translation Progress](https://badges.crowdin.net/phpbb-ext-hide/localized.svg)](https://crowdin.com/project/phpbb-ext-hide)
 [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-hide/master/license.txt)
 
-### Dependencies
+Allows you to write `[hide]text[/hide]` or `[hide inline=1]text[/hide]` and it will hide the content to guests.
+
+You can nest `[hide]` and use other BBCodes inside it.
+
+### Features
+
+- BBCodes can be nested
+- It adds visual help to recognize content that will be hidden
+- It can hide inline content
+- It doesn't require extra configuration
+
+### Requirements
 
 - PHP 7.1.3 or greater
 - phpBB 3.3 or greater
+
+### Support
+
+- [Development topic](https://www.phpbb-es.com/foro/viewtopic.php?t=42374)
+- [GitHub issues](https://github.com/AlfredoRamos/phpbb-ext-hide/issues)
+- [Crowdin translations](https://crowdin.com/project/phpbb-ext-hide)
 
 ### Installation
 
@@ -21,14 +38,10 @@ Hide extension for phpBB
 - Go to your `Administration Control Panel` > `Customize` > `Manage extensions`
 - Click on `Enable` and confirm
 
-### Usage
-
-Write `[hide]text[/hide]`  and it will hide the content to guests.
-
 ### Preview
 
-[![Logged in user](https://i.imgur.com/OajNWkct.png)](https://i.imgur.com/OajNWkc.png) [![Guest user](https://i.imgur.com/xDbK3oUt.png)](https://i.imgur.com/xDbK3oU.png)
-
+[![Logged in user](https://i.imgur.com/OajNWkct.png)](https://i.imgur.com/OajNWkc.png)
+[![Guest user](https://i.imgur.com/xDbK3oUt.png)](https://i.imgur.com/xDbK3oU.png)
 
 *(Click to view in full size)*
 
