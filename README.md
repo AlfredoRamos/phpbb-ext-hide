@@ -4,7 +4,7 @@ Hide extension for phpBB
 
 [![Build Status](https://img.shields.io/travis/com/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://travis-ci.com/AlfredoRamos/phpbb-ext-hide)
 [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-hide.svg?label=stable&style=flat-square)](https://github.com/AlfredoRamos/phpbb-ext-hide/releases)
-[![Code Quality](https://img.shields.io/codefactor/grade/github/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://www.codefactor.io/repository/github/alfredoramos/phpbb-ext-hide)
+[![Code Quality](https://img.shields.io/codacy/grade/5de75f922b4f4eae90615728e908c1c7.svg?style=flat-square)](https://app.codacy.com/manual/AlfredoRamos/phpbb-ext-hide/dashboard)
 [![Translation Progress](https://badges.crowdin.net/phpbb-ext-hide/localized.svg)](https://crowdin.com/project/phpbb-ext-hide)
 [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-hide.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-hide/master/license.txt)
 
