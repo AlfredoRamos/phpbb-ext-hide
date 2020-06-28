@@ -16,6 +16,7 @@
 	<target name="clean-package">
 		<delete dir="${dir}/tests" />
 		<delete dir="${dir}/travis" />
+		<delete dir="${dir}/.github" />
 		<delete file="${dir}/.gitignore" />
 		<delete file="${dir}/.gitattributes" />
 		<delete file="${dir}/.travis.yml" />
