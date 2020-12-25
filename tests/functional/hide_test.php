@@ -9,14 +9,12 @@
 
 namespace alfredoramos\hide\tests\functional;
 
-use phpbb_functional_test_case;
-
 /**
  * @group functional
  */
-class hide_test extends phpbb_functional_test_case
+class hide_test extends \phpbb_functional_test_case
 {
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		parent::setUp();
 		$this->add_lang_ext('alfredoramos/hide', 'posting');
@@ -53,7 +51,7 @@ class hide_test extends phpbb_functional_test_case
 		));
 
 		$this->assertSame(1, $result->count());
-		$this->assertContains($expected, $result->html());
+		$this->assertStringContainsString($expected, $result->html());
 	}
 
 	/**
@@ -66,9 +64,8 @@ class hide_test extends phpbb_functional_test_case
 		$topic_id = 2;
 
 		$crawler = self::request('GET', sprintf(
-			'viewtopic.php?t=%d&sid=%s',
-			$topic_id,
-			$this->sid
+			'viewtopic.php?t=%d',
+			$topic_id
 		));
 
 		$expected = '<div class="hidden-content error">'.
@@ -80,6 +77,6 @@ class hide_test extends phpbb_functional_test_case
 			$topic_id
 		));
 
-		$this->assertContains($expected, $result->html());
+		$this->assertStringContainsString($expected, $result->html());
 	}
 }
