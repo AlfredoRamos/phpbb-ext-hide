@@ -14,7 +14,7 @@ use alfredoramos\hide\includes\helper as hide_helper;
 
 class m1_hide_data extends container_aware_migration
 {
-	/** @var \alfredoramos\hide\includes\helper */
+	/** @var helper */
 	protected $hide = null;
 
 	/**
@@ -54,7 +54,7 @@ class m1_hide_data extends container_aware_migration
 	/**
 	 * Hide helper.
 	 *
-	 * @return \alfredoramos\hide\includes\helper
+	 * @return helper
 	 */
 	private function get_helper()
 	{

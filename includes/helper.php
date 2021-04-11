@@ -15,13 +15,13 @@ use phpbb\language\language;
 
 class helper
 {
-	/** @var \phpbb\db\driver\factory */
+	/** @var database */
 	protected $db;
 
-	/** @var \phpbb\filesystem\filesystem */
+	/** @var filesystem */
 	protected $filesystem;
 
-	/** @var \phpbb\language\language */
+	/** @var language */
 	protected $language;
 
 	/** @var string */
@@ -36,11 +36,11 @@ class helper
 	/**
 	 * Constructor of the helper class.
 	 *
-	 * @param \phpbb\db\driver\factory		$db
-	 * @param \phpbb\filesystem\filesystem	$filesystem
-	 * @param \phpbb\language\language		$language
-	 * @param string						$root_path
-	 * @param string						$php_ext
+	 * @param database		$db
+	 * @param filesystem	$filesystem
+	 * @param language		$language
+	 * @param string		$root_path
+	 * @param string		$php_ext
 	 *
 	 * @return void
 	 */

@@ -14,13 +14,13 @@ use alfredoramos\hide\includes\helper;
 
 class listener implements EventSubscriberInterface
 {
-	/** @var \alfredoramos\hide\includes\helper */
+	/** @var helper */
 	protected $helper;
 
 	/**
 	 * Listener constructor.
 	 *
-	 * @param \alfredoramos\hide\includes\helper $helper
+	 * @param helper $helper
 	 *
 	 * @return void
 	 */
