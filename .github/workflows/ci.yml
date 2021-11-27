@@ -2,13 +2,8 @@ name: CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
 
 env:
   EXTNAME: 'alfredoramos/hide'
@@ -16,11 +11,11 @@ env:
   IMAGE_ICC: 1
   EPV: 1
   EXECUTABLE_FILES: 1
-  EXTDEPS: 0
   PHPBB_BRANCH: 3.3.x
 
 jobs:
   test:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     name: php ${{ matrix.php-version }}, ${{ matrix.db-type }}
     runs-on: ubuntu-18.04
     services:
@@ -90,16 +85,16 @@ jobs:
             db-version: '10.5'
     steps:
       - name: Checkout phpBB
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
           repository: phpbb/phpbb
           ref: ${{ env.PHPBB_BRANCH }}
           path: phpBB3
 
       - name: Checkout extension
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
-          path: phpBB3/phpBB/ext/${{ env.EXTNAME }}
+          path: extension
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -118,7 +113,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.setup-composer.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock', '**/composer.json', 'phpBB3/phpBB/ext/${{ env.EXTNAME }}/composer.lock', 'phpBB3/phpBB/ext/${{ env.EXTNAME }}/composer.json') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock', '**/composer.json') }}
           restore-keys: |
             ${{ runner.os }}-composer-
 
@@ -126,10 +121,11 @@ jobs:
         working-directory: phpBB3
         run: .github/setup-phpbb.sh $DB $PHP_VERSION $NOTESTS
 
-      - name: Install extension dependencies
-        if: ${{ env.EXTDEPS == 1 }}
-        working-directory: phpBB3/phpBB/ext/${{ env.EXTNAME }}
-        run: composer update -n --no-dev --prefer-dist --no-progress
+      - name: Setup extension
+        working-directory: extension
+        run: |
+          chmod +x .github/setup-extension.sh
+          .github/setup-extension.sh $EXTNAME $NOTESTS
 
       - name: Setup EPV
         if: ${{ env.NOTESTS == 1 && env.EPV == 1 }}
