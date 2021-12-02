@@ -83,6 +83,9 @@ jobs:
           - php-version: '8.1'
             db-type: 'mariadb'
             db-version: '10.5'
+          - php-version: '8.2'
+            db-type: 'postgres'
+            db-version: '14'
     steps:
       - name: Checkout phpBB
         uses: actions/checkout@v2
