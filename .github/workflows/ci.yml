@@ -33,7 +33,7 @@ jobs:
           --health-retries=3
 
       postgres:
-        image: ${{ (matrix.db-type == 'postgres') && matrix.db-type || 'postgres' }}:${{ (matrix.db-type == 'postgres' && matrix.db-version != 'none') && matrix.db-version || 'latest' }}
+        image: ${{ (matrix.db-type == 'postgres') && matrix.db-type || 'postgres' }}:${{ (matrix.db-type == 'postgres' && matrix.db-version != 'none') && matrix.db-version || 'alpine' }}
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -85,7 +85,7 @@ jobs:
             db-version: '10.5'
           - php-version: '8.2'
             db-type: 'postgres'
-            db-version: '14'
+            db-version: '14-alpine'
     steps:
       - name: Checkout phpBB
         uses: actions/checkout@v2
