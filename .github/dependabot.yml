@@ -9,3 +9,8 @@ updates:
     schedule:
       interval: 'daily'
     versioning-strategy: increase-if-necessary
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    versioning-strategy: widen

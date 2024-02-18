@@ -16,8 +16,8 @@ env:
 jobs:
   test:
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
-    name: php ${{ matrix.php-version }}, ${{ matrix.db-type }}
-    runs-on: ubuntu-18.04
+    name: php ${{ matrix.php-version }}, ${{ matrix.db-type }} ${{ matrix.db-version }}
+    runs-on: ubuntu-20.04
     services:
       mysql:
         image: ${{ (matrix.db-type == 'mysql' || matrix.db-type == 'mariadb') && matrix.db-type || 'mariadb' }}:${{ (matrix.db-type == 'mysql' || matrix.db-type == 'mariadb' && matrix.db-version != 'none') && matrix.db-version || 'latest' }}
@@ -64,7 +64,7 @@ jobs:
             db-version: '10.5'
           - php-version: '7.1'
             db-type: 'postgres'
-            db-version: '13.1'
+            db-version: '13-alpine'
           - php-version: '7.2'
             db-type: 'mariadb'
             db-version: '10.5'
@@ -82,7 +82,7 @@ jobs:
             db-version: '10.5'
           - php-version: '8.1'
             db-type: 'mariadb'
-            db-version: '10.5'
+            db-version: '10.6'
           - php-version: '8.2'
             db-type: 'postgres'
             db-version: '14-alpine'
@@ -110,12 +110,12 @@ jobs:
       - name: Setup Composer
         id: setup-composer
         working-directory: phpBB3/phpBB
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "cache-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Setup cache
         uses: actions/cache@v3
         with:
-          path: ${{ steps.setup-composer.outputs.dir }}
+          path: ${{ steps.setup-composer.outputs.cache-dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock', '**/composer.json') }}
           restore-keys: |
             ${{ runner.os }}-composer-
@@ -123,6 +123,23 @@ jobs:
       - name: Setup environment for phpBB
         working-directory: phpBB3
         run: .github/setup-phpbb.sh $DB $PHP_VERSION $NOTESTS
+
+      - name: Setup Node cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+
+      - name: Install Node dependencies
+        working-directory: extension
+        run: npm install
 
       - name: Setup extension
         working-directory: extension
@@ -171,3 +188,33 @@ jobs:
         if: ${{ env.NOTESTS != 1 }}
         working-directory: phpBB3
         run: phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/ci/phpunit-$DB-github.xml --bootstrap tests/bootstrap.php
+
+  lint:
+    if: ${{ !contains(github.event.head_commit.message, '[skip lint]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout extension
+        uses: actions/checkout@v3
+        with:
+          path: extension
+
+      - name: Setup Node cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+
+      - name: Install Node dependencies
+        working-directory: extension
+        run: npm install
+
+      - name: Test SCSS
+        working-directory: extension
+        run: npm run lint-scss

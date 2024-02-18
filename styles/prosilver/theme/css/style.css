@@ -1,43 +1,43 @@
 /**
  * Hide extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@yandex.com>
+ * @author Alfredo Ramos <alfredo.ramos@proton.me>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
 
 .hidden-content {
-	margin: 1em 0;
-	padding: 5px;
+  margin: 1em 0;
+  padding: 5px;
 }
 
 .hidden-content,
 .hidden-content header span {
-	border-width: 2px;
-	border-style: solid;
-	border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
 }
 
 .hidden-content header {
-	margin: -15px auto 5px;
+  margin: -15px auto 5px;
 }
 
 .hidden-content header span {
-	padding: 1px 5px;
-	font-weight: bold;
+  padding: 1px 5px;
+  font-weight: bold;
 }
 
 .hidden-content.inline {
-	display: inline-block;
-	margin: 0;
-	padding: 0 3px;
+  display: inline-block;
+  margin: 0;
+  padding: 0 3px;
 }
 
 .hidden-content.error {
-	text-align: center;
+  text-align: center;
 }
 
 .bbcode-hide.abbc3_button {
-	background-image: url('../../../all/theme/images/lock-closed.svg');
-	background-size: 95%;
-	background-position: 50% 50%;
+  background-image: url('../../../all/theme/images/lock-closed.svg');
+  background-size: 95%;
+  background-position: 50% 50%;
 }
