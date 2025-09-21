@@ -21,7 +21,7 @@ You can nest `[hide]` and use other BBCodes inside it.
 
 ### Requirements
 
-- PHP 7.1.3 or greater
+- PHP 7.4.0 or greater
 - phpBB 3.3 or greater
 
 ### Support

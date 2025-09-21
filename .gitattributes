@@ -4,6 +4,12 @@ tests/ export-ignore
 phpunit.xml.dist export-ignore
 build.xml export-ignore
 crowdin.yml export-ignore
+package.json export-ignore
+package-lock.json export-ignore
+postcss.config.js export-ignore
+.tool-versions export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore
+.editorconfig export-ignore
+.stylelintrc.json export-ignore
 *.md export-ignore
