@@ -14,3 +14,4 @@ services:
             - '@language'
             - '%core.root_path%'
             - '%core.php_ext%'
+            - '%tables.bbcodes%'

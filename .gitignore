@@ -1,6 +1,6 @@
 build/
 vendor/
-.bundle/
-composer.*
-!composer.json
-.DS_Store
+node_modules/
+composer.lock
+.phpunit.result.cache
+*.tmp
