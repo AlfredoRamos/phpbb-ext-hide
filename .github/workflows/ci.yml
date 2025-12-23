@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4']
+        php-version: ['8.1']
     steps:
       - name: Checkout phpBB
         uses: actions/checkout@v6
@@ -129,15 +129,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php-version: '7.4'
+          - php-version: '8.1'
             db-type: 'mysql'
-            db-version: '8.0'
-          - php-version: '7.4'
-            db-type: 'mariadb'
-            db-version: '10.5'
-          - php-version: '8.0'
-            db-type: 'mariadb'
-            db-version: '10.5'
+            db-version: '5.7'
           - php-version: '8.1'
             db-type: 'mariadb'
             db-version: '10.6'
@@ -148,6 +142,9 @@ jobs:
             db-type: 'mariadb'
             db-version: '10.11'
           - php-version: '8.4'
+            db-type: 'mariadb'
+            db-version: '10.11'
+          - php-version: '8.5'
             db-type: 'mariadb'
             db-version: '10.11'
     steps:
@@ -245,12 +242,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php-version: '7.4'
-            db-type: 'postgres'
-            db-version: '16-alpine'
-          - php-version: '8.4'
+          - php-version: '8.1'
             db-type: 'postgres'
             db-version: '17-alpine'
+          - php-version: '8.4'
+            db-type: 'postgres'
+            db-version: '18-alpine'
+          - php-version: '8.5'
+            db-type: 'postgres'
+            db-version: '18-alpine'
     steps:
       - name: Checkout phpBB
         uses: actions/checkout@v6
